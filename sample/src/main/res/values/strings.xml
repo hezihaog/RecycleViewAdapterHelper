@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">RecycleViewAdapterHelper</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_shopping_cart">Shopping cart</string>
+</resources>
