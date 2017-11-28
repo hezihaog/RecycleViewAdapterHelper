@@ -55,7 +55,7 @@ public class HomeFragment extends ExtendLazyFragment {
     @Override
     public void onBindContent() {
         initData();
-        SingleTypeAdapter<Friend> adapter = new SingleTypeAdapter<Friend>(getActivity(), R.layout.item_main_person) {
+        SingleTypeAdapter<Friend> adapter = new SingleTypeAdapter<Friend>(getActivity(), R.layout.item_main_friend) {
 
             @Override
             public void convert(int position, RecyclerViewHolder holder, Friend bean) {

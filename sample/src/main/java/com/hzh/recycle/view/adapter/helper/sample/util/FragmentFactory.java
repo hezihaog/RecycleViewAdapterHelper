@@ -1,4 +1,4 @@
-package com.hzh.recycle.view.adapter.helper.sample;
+package com.hzh.recycle.view.adapter.helper.sample.util;
 
 import android.content.Context;
 import android.os.Bundle;

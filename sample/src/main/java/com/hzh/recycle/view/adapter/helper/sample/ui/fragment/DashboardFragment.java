@@ -2,14 +2,26 @@ package com.hzh.recycle.view.adapter.helper.sample.ui.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.hzh.lazy.fragment.ExtendLazyFragment;
+import com.hzh.logger.L;
+import com.hzh.recycle.view.adapter.helper.adapter.multitype.HeaderFooterAdapter;
 import com.hzh.recycle.view.adapter.helper.sample.R;
+import com.hzh.recycle.view.adapter.helper.sample.base.Dashboard;
+import com.hzh.recycle.view.adapter.helper.sample.base.Footer;
+import com.hzh.recycle.view.adapter.helper.sample.base.Header;
+import com.hzh.recycle.view.adapter.helper.sample.provider.DashboardProvider;
+import com.hzh.recycle.view.adapter.helper.sample.provider.FooterProvider;
+import com.hzh.recycle.view.adapter.helper.sample.provider.HeaderProvider;
 import com.hzh.recycle.view.adapter.helper.sample.ui.activity.MainActivity;
+import com.hzh.recycle.view.adapter.helper.sample.util.FakeUtil;
+
+import java.util.ArrayList;
 
 /**
  * Package: com.hzh.lazy.fragment.sample.fragment
@@ -21,8 +33,8 @@ import com.hzh.recycle.view.adapter.helper.sample.ui.activity.MainActivity;
  */
 
 public class DashboardFragment extends ExtendLazyFragment {
-    private String position;
-    private TextView tip;
+    private RecyclerView mRecyclerView;
+    private ArrayList<Dashboard> mDatas;
 
     @Override
     public View onInflaterRootView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -32,17 +44,25 @@ public class DashboardFragment extends ExtendLazyFragment {
     @Override
     protected void onLazyViewCreated(View view, @Nullable Bundle savedInstanceState) {
         Bundle arguments = getArguments();
-        position = arguments.getString(MainActivity.KEY_BUNDLE_POSITION);
+        String position = arguments.getString(MainActivity.KEY_BUNDLE_POSITION);
+        L.d("position ::: " + position);
     }
 
     @Override
     public void onFindViews(View mRootView) {
-        tip = mRootView.findViewById(R.id.tip);
+        mRecyclerView = (RecyclerView) mRootView.findViewById(R.id.recyclerView);
     }
 
     @Override
     public void onBindContent() {
-        tip.setText("DashboardFragment position" + position);
+        initData();
+        HeaderFooterAdapter adapter = new HeaderFooterAdapter();
+        adapter.register(Dashboard.class, new DashboardProvider(getContext()));
+        mRecyclerView.setAdapter(adapter);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter.registerHeader(new Header(), new HeaderProvider(getContext()));
+        adapter.registerFooter(new Footer(), new FooterProvider(getContext()));
+        adapter.addDatas(mDatas);
     }
 
     @Override
@@ -53,5 +73,14 @@ public class DashboardFragment extends ExtendLazyFragment {
     @Override
     protected void onFragmentInvisible() {
         super.onFragmentInvisible();
+    }
+
+    private void initData() {
+        mDatas = new ArrayList<Dashboard>();
+        for (int i = 0; i < 15; i++) {
+            Dashboard dashboard = new Dashboard();
+            dashboard.setText(FakeUtil.getRandomScenicName(i));
+            mDatas.add(dashboard);
+        }
     }
 }

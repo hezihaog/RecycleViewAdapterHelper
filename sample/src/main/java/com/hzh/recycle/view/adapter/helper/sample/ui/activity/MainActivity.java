@@ -9,7 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
-import com.hzh.recycle.view.adapter.helper.sample.FragmentFactory;
+import com.hzh.recycle.view.adapter.helper.sample.util.FragmentFactory;
 import com.hzh.recycle.view.adapter.helper.sample.R;
 import com.hzh.recycle.view.adapter.helper.sample.ui.fragment.DashboardFragment;
 import com.hzh.recycle.view.adapter.helper.sample.ui.fragment.HomeFragment;
