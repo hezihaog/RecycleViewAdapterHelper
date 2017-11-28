@@ -14,6 +14,7 @@ import com.hzh.lazy.fragment.ExtendLazyFragment;
 import com.hzh.logger.L;
 import com.hzh.recycle.view.adapter.helper.adapter.base.RecyclerViewHolder;
 import com.hzh.recycle.view.adapter.helper.adapter.singletype.SingleTypeAdapter;
+import com.hzh.recycle.view.adapter.helper.divider.RecycleViewDivider;
 import com.hzh.recycle.view.adapter.helper.sample.R;
 import com.hzh.recycle.view.adapter.helper.sample.entity.Friend;
 import com.hzh.recycle.view.adapter.helper.sample.ui.activity.MainActivity;
@@ -76,9 +77,11 @@ public class HomeFragment extends ExtendLazyFragment {
                 });
             }
         };
-        adapter.addDatas(mDatas);
         mRecyclerView.setAdapter(adapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mRecyclerView.addItemDecoration(new RecycleViewDivider(getContext(), LinearLayoutManager.VERTICAL
+                , R.drawable.item_divider));
+        adapter.addDatas(mDatas);
     }
 
     private void initData() {

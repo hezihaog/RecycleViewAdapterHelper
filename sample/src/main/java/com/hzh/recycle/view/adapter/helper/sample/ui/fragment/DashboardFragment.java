@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.hzh.lazy.fragment.ExtendLazyFragment;
 import com.hzh.logger.L;
 import com.hzh.recycle.view.adapter.helper.adapter.multitype.HeaderFooterAdapter;
+import com.hzh.recycle.view.adapter.helper.divider.RecycleViewDivider;
 import com.hzh.recycle.view.adapter.helper.sample.R;
 import com.hzh.recycle.view.adapter.helper.sample.base.Dashboard;
 import com.hzh.recycle.view.adapter.helper.sample.base.Footer;
@@ -60,6 +61,8 @@ public class DashboardFragment extends ExtendLazyFragment {
         adapter.register(Dashboard.class, new DashboardProvider(getContext()));
         mRecyclerView.setAdapter(adapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mRecyclerView.addItemDecoration(new RecycleViewDivider(getContext(), LinearLayoutManager.VERTICAL
+                , R.drawable.item_divider));
         adapter.registerHeader(new Header(), new HeaderProvider(getContext()));
         adapter.registerFooter(new Footer(), new FooterProvider(getContext()));
         adapter.addDatas(mDatas);
