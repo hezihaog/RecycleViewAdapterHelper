@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- 仿微信左进 -->
-<set xmlns:android="http://schemas.android.com/apk/res/android">
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shareInterpolator="@android:anim/accelerate_decelerate_interpolator">
     <translate
-        android:duration="250"
-        android:fromXDelta="0%p"
-        android:toXDelta="0%p"/>
+        android:duration="@integer/anim_duration"
+        android:fromXDelta="-40%p"
+        android:toXDelta="0%p" />
+
+    <alpha
+        android:duration="@integer/anim_duration"
+        android:fromAlpha="0.85"
+        android:toAlpha="1" />
 </set>

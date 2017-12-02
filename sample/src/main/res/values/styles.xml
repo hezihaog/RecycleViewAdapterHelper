@@ -14,7 +14,7 @@
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 
-    <style name="AnimationTheme" parent="@android:style/Animation.Activity">
+    <style name="AnimationTheme" parent="@android:style/Animation.Translucent">
         <!-- 打开下一个Activity，下一个Activity进入的动画   animation_scale_right_in-->
         <item name="android:activityOpenEnterAnimation">@anim/animation_slide_right_in</item>
         <!-- 打开下一个Activity，该Activity退出的动画 -->
