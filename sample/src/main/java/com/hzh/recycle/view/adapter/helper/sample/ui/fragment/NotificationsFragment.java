@@ -1,5 +1,6 @@
 package com.hzh.recycle.view.adapter.helper.sample.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import com.hzh.lazy.fragment.ExtendLazyFragment;
 import com.hzh.recycle.view.adapter.helper.sample.R;
+import com.hzh.recycle.view.adapter.helper.sample.ui.activity.DetailActivity;
 import com.hzh.recycle.view.adapter.helper.sample.ui.activity.MainActivity;
 
 /**
@@ -43,6 +45,12 @@ public class NotificationsFragment extends ExtendLazyFragment {
     @Override
     public void onBindContent() {
         tip.setText("NotificationsFragment position" + position);
+        tip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), DetailActivity.class));
+            }
+        });
     }
 
     @Override

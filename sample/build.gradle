@@ -36,7 +36,7 @@ dependencies {
     compile 'com.hzh:lia-view-holder-component:1.0.0'
     compile 'com.hzh:lifecycle-dispatch:1.0.2'
     compile 'com.hzh:easy-cache:1.0.1'
-    compile 'com.hzh:slide-back-layout:1.0.0'
+    compile 'com.hzh:slide-back-layout:1.0.2'
     compile 'com.hzh:lia-view-holder-component:1.0.0'
     compile project(':recycle-view-adapter-helper')
 }
