@@ -4,15 +4,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
-import com.hzh.lazy.fragment.ExtendLazyFragment;
 import com.hzh.logger.L;
 import com.hzh.recycle.view.adapter.helper.adapter.multitype.HeaderFooterAdapter;
 import com.hzh.recycle.view.adapter.helper.divider.RecycleViewDivider;
 import com.hzh.recycle.view.adapter.helper.sample.R;
+import com.hzh.recycle.view.adapter.helper.sample.base.BaseFragment;
 import com.hzh.recycle.view.adapter.helper.sample.base.Dashboard;
 import com.hzh.recycle.view.adapter.helper.sample.base.Footer;
 import com.hzh.recycle.view.adapter.helper.sample.base.Header;
@@ -21,6 +19,8 @@ import com.hzh.recycle.view.adapter.helper.sample.provider.FooterProvider;
 import com.hzh.recycle.view.adapter.helper.sample.provider.HeaderProvider;
 import com.hzh.recycle.view.adapter.helper.sample.ui.activity.MainActivity;
 import com.hzh.recycle.view.adapter.helper.sample.util.FakeUtil;
+import com.hzh.view.injector.anno.ContentView;
+import com.hzh.view.injector.anno.ViewInject;
 
 import java.util.ArrayList;
 
@@ -33,14 +33,12 @@ import java.util.ArrayList;
  * Email: hezihao@linghit.com
  */
 
-public class DashboardFragment extends ExtendLazyFragment {
+@ContentView(R.layout.fragment_dashboard)
+public class DashboardFragment extends BaseFragment {
+    @ViewInject(R.id.recyclerView)
     private RecyclerView mRecyclerView;
-    private ArrayList<Dashboard> mDatas;
 
-    @Override
-    public View onInflaterRootView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_dashboard, container, false);
-    }
+    private ArrayList<Dashboard> mDatas;
 
     @Override
     protected void onLazyViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -51,7 +49,6 @@ public class DashboardFragment extends ExtendLazyFragment {
 
     @Override
     public void onFindViews(View mRootView) {
-        mRecyclerView = (RecyclerView) mRootView.findViewById(R.id.recyclerView);
     }
 
     @Override

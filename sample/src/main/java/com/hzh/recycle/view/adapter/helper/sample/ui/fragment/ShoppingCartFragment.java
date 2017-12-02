@@ -2,14 +2,14 @@ package com.hzh.recycle.view.adapter.helper.sample.ui.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.hzh.lazy.fragment.ExtendLazyFragment;
 import com.hzh.recycle.view.adapter.helper.sample.R;
+import com.hzh.recycle.view.adapter.helper.sample.base.BaseFragment;
 import com.hzh.recycle.view.adapter.helper.sample.ui.activity.MainActivity;
+import com.hzh.view.injector.anno.ContentView;
+import com.hzh.view.injector.anno.ViewInject;
 
 /**
  * Package: com.hzh.lazy.fragment.sample.fragment
@@ -20,14 +20,12 @@ import com.hzh.recycle.view.adapter.helper.sample.ui.activity.MainActivity;
  * Email: hezihao@linghit.com
  */
 
-public class ShoppingCartFragment extends ExtendLazyFragment {
-    private String position;
+@ContentView(R.layout.fragment_shopping_cart)
+public class ShoppingCartFragment extends BaseFragment {
+    @ViewInject(R.id.tip)
     private TextView tip;
 
-    @Override
-    public View onInflaterRootView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_shopping_cart, container, false);
-    }
+    private String position;
 
     @Override
     protected void onLazyViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -37,7 +35,6 @@ public class ShoppingCartFragment extends ExtendLazyFragment {
 
     @Override
     public void onFindViews(View mRootView) {
-        tip = mRootView.findViewById(R.id.tip);
     }
 
     @Override

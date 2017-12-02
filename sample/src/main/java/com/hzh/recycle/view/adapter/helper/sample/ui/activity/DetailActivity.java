@@ -6,16 +6,15 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.FrameLayout;
 
 import com.hzh.recycle.view.adapter.helper.sample.R;
+import com.hzh.recycle.view.adapter.helper.sample.base.BaseActivity;
 import com.hzh.recycle.view.adapter.helper.sample.ui.fragment.DashboardFragment;
 import com.hzh.recycle.view.adapter.helper.sample.util.FragmentFactory;
 import com.hzh.slide.back.layout.SlideBackLayout;
-import com.hzh.view.injector.ViewInjectorImpl;
 import com.hzh.view.injector.anno.ContentView;
 import com.hzh.view.injector.anno.ViewInject;
 
@@ -29,7 +28,7 @@ import com.hzh.view.injector.anno.ViewInject;
  * Email: hezihao@linghit.com
  */
 @ContentView(R.layout.activity_detail)
-public class DetailActivity extends AppCompatActivity {
+public class DetailActivity extends BaseActivity {
     @ViewInject(R.id.container)
     public FrameLayout container;
 
@@ -39,7 +38,6 @@ public class DetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ViewInjectorImpl.getInstance().inject(this);
         Bundle args = new Bundle();
         args.putString(MainActivity.KEY_BUNDLE_POSITION, String.valueOf(0));
         Fragment fragment = FragmentFactory.newInstance(getApplicationContext(), DashboardFragment.class, args);

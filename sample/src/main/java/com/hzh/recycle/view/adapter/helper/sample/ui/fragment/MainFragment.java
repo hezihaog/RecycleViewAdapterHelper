@@ -12,15 +12,15 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 
-import com.hzh.lazy.fragment.ExtendLazyFragment;
 import com.hzh.recycle.view.adapter.helper.sample.R;
+import com.hzh.recycle.view.adapter.helper.sample.base.BaseFragment;
 import com.hzh.recycle.view.adapter.helper.sample.ui.activity.MainActivity;
 import com.hzh.recycle.view.adapter.helper.sample.util.FragmentFactory;
+import com.hzh.view.injector.anno.ContentView;
+import com.hzh.view.injector.anno.ViewInject;
 
 
 /**
@@ -32,13 +32,19 @@ import com.hzh.recycle.view.adapter.helper.sample.util.FragmentFactory;
  * Email: hezihao@linghit.com
  */
 
-public class MainFragment extends ExtendLazyFragment {
+@ContentView(R.layout.fragment_main)
+public class MainFragment extends BaseFragment {
+    @ViewInject(R.id.toolBar)
     private Toolbar toolbar;
+    @ViewInject(R.id.pager)
     private ViewPager pager;
-    private DrawerLayout mDrawerLayout;
+    @ViewInject(R.id.bottomNavigation)
     private BottomNavigationView bottomNavigation;
-    private AppCompatActivity compatActivity;
+    @ViewInject(R.id.drawer_layout)
+    private DrawerLayout mDrawerLayout;
+    @ViewInject(R.id.nav_view)
     private NavigationView navigationView;
+    private AppCompatActivity compatActivity;
 
     @Override
     protected void onLazyViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -46,17 +52,7 @@ public class MainFragment extends ExtendLazyFragment {
     }
 
     @Override
-    public View onInflaterRootView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_main, container, false);
-    }
-
-    @Override
     public void onFindViews(View mRootView) {
-        toolbar = (Toolbar) mRootView.findViewById(R.id.toolBar);
-        pager = (ViewPager) mRootView.findViewById(R.id.pager);
-        bottomNavigation = (BottomNavigationView) mRootView.findViewById(R.id.bottomNavigation);
-        mDrawerLayout = (DrawerLayout) mRootView.findViewById(R.id.drawer_layout);
-        navigationView = (NavigationView) mRootView.findViewById(R.id.nav_view);
     }
 
     @Override
