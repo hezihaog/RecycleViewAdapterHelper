@@ -4,9 +4,14 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,11 +33,16 @@ import com.hzh.recycle.view.adapter.helper.sample.util.FragmentFactory;
  */
 
 public class MainFragment extends ExtendLazyFragment {
+    private Toolbar toolbar;
     private ViewPager pager;
+    private DrawerLayout mDrawerLayout;
     private BottomNavigationView bottomNavigation;
+    private AppCompatActivity compatActivity;
+    private NavigationView navigationView;
 
     @Override
     protected void onLazyViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        compatActivity = (AppCompatActivity) getActivity();
     }
 
     @Override
@@ -42,12 +52,38 @@ public class MainFragment extends ExtendLazyFragment {
 
     @Override
     public void onFindViews(View mRootView) {
+        toolbar = (Toolbar) mRootView.findViewById(R.id.toolBar);
         pager = (ViewPager) mRootView.findViewById(R.id.pager);
         bottomNavigation = (BottomNavigationView) mRootView.findViewById(R.id.bottomNavigation);
+        mDrawerLayout = (DrawerLayout) mRootView.findViewById(R.id.drawer_layout);
+        navigationView = (NavigationView) mRootView.findViewById(R.id.nav_view);
     }
 
     @Override
     public void onBindContent() {
+        //ToolBar
+        compatActivity.setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.ic_menu);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDrawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
+        toolbar.setTitle(getResources().getString(R.string.app_name));
+        //DrawLayout-NavigationView
+        if (navigationView != null) {
+            navigationView.setNavigationItemSelectedListener(
+                    new NavigationView.OnNavigationItemSelectedListener() {
+                        @Override
+                        public boolean onNavigationItemSelected(MenuItem menuItem) {
+                            menuItem.setChecked(true);
+                            mDrawerLayout.closeDrawers();
+                            return true;
+                        }
+                    });
+        }
+        //ViewPager
         pager.setOffscreenPageLimit(bottomNavigation.getMenu().size());
         pager.setAdapter(new FragmentPagerAdapter(getChildFragmentManager()) {
             @Override

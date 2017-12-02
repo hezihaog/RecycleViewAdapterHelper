@@ -1,9 +1,14 @@
 package com.hzh.recycle.view.adapter.helper.sample.ui.activity;
 
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.FrameLayout;
 
 import com.hzh.recycle.view.adapter.helper.sample.R;
@@ -28,6 +33,9 @@ public class DetailActivity extends AppCompatActivity {
     @ViewInject(R.id.container)
     public FrameLayout container;
 
+    @ViewInject(R.id.toolBar)
+    private Toolbar toolbar;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,5 +49,16 @@ public class DetailActivity extends AppCompatActivity {
                 .commit();
         SlideBackLayout slideBackLayout = new SlideBackLayout(getApplicationContext());
         slideBackLayout.bind(this);
+        setSupportActionBar(toolbar);
+        //将返回图片转换为白色
+        Drawable backDrawable = getResources().getDrawable(R.mipmap.ic_default_back);
+        backDrawable.mutate().setColorFilter(Color.parseColor("#FFFFFF"), PorterDuff.Mode.SRC_ATOP);
+        toolbar.setNavigationIcon(backDrawable);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 }
